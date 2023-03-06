@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+ormar
+asyncpg
+psycopg2-binary
