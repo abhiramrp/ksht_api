@@ -1,0 +1,6 @@
+fastapi
+pydantic
+uvicorn
+asyncpg
+ormar
+psycopg2-binary

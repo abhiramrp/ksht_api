@@ -1,4 +1,19 @@
 services:
+
+  fastapi_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8009:80"
+    environment:
+      - DATABASE_URL=postgresql://username:password@postgres_container:5432/ksht_database 
+    depends_on:
+      - postgres_container
+    networks:
+      - ksht_network
+    platform: linux/amd64
+
   keycloak_container:
     image: quay.io/keycloak/keycloak
     command: start-dev
