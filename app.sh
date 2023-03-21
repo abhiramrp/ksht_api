@@ -1,8 +1,6 @@
 #! /usr/bin/env bash
 
 docker-compose down
-docker-compose up
+docker-compose up -d
 
 echo 'Build complete'
-
-docker-compose logs | grep error

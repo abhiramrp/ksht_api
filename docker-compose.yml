@@ -1,39 +1,39 @@
 services:
-  keycloak:
+  keycloak_container:
     image: quay.io/keycloak/keycloak
     command: start-dev
     environment:
       KC_DB: postgres
-      KC_DB_URL_HOST: postgres
-      KC_DB_DATABASE: ksht_database  
-      KC_DB_USERNAME: username
-      KC_DB_PASSWORD: password
-      KC_DB_SCHEMA: public 
+      KC_DB_URL_DATABASE: ksht_database
+      KC_DB_USERNAME: username 
+      KC_DB_PASSWORD: password 
+      KC_DB_URL_HOST: postgres_container  
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "8890:8080"
     depends_on:
-      - postgres
+      - postgres_container
     networks:
       - ksht_network
-  postgres:
+  
+  postgres_container:
     image: postgres
-    command: postgres -c 'max_connections=200'
-    volumes:
-      - pgdata:/var/lib/postgresql/data 
+    restart: always
+    volumes: 
+      - ksht_volume:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ksht_database
-      POSTGRES_USERNAME: username
+      POSTGRES_USER: username
       POSTGRES_PASSWORD: password
     ports:
-      - "5436:5432"
+      - "5432:5432"
     networks:
       - ksht_network
-
-volumes:
-  pgdata:
 
 networks:
   ksht_network:
     driver: bridge
+
+volumes:
+  ksht_volume:
