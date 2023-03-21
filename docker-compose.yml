@@ -31,6 +31,7 @@ services:
       - postgres_container
     networks:
       - ksht_network
+    restart: always
   
   postgres_container:
     image: postgres

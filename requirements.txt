@@ -3,4 +3,5 @@ pydantic
 uvicorn
 asyncpg
 ormar
+fastapi-keycloak
 psycopg2-binary
