@@ -15,7 +15,7 @@ services:
     platform: linux/amd64
 
   keycloak_container:
-    image: quay.io/keycloak/keycloak
+    image: quay.io/keycloak/keycloak:latest
     command: start-dev
     environment:
       KC_DB: postgres
